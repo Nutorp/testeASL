@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p dist
           cp hello.py dist/
-          cp calculator.html dist/
+          #cp calculator.html dist/
           echo "Deploy finalizado na pasta dist/"
 
       # 6. Opcional: listar arquivos para demonstrar
