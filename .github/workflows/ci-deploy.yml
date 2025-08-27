@@ -1,0 +1,44 @@
+name: CI/CD - Deploy Simulado
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Pega o código do repositório
+      - uses: actions/checkout@v4
+
+      # 2. Configura Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # 3. Roda seu script para garantir que está ok
+      - name: Run hello.py
+        run: python hello.py
+
+      # 4. Instala pytest e roda testes (opcional)
+      # - name: Run tests
+        # run: |
+          # pip install pytest
+          # pytest || true  # não interrompe se houver falhas
+
+      # 5. “Deploy simulado” → copia arquivos para a pasta dist/
+      - name: Deploy Simulado
+        run: |
+          mkdir -p dist
+          cp hello.py dist/
+          cp calculator.html dist/
+          echo "Deploy finalizado na pasta dist/"
+
+      # 6. Opcional: listar arquivos para demonstrar
+      - name: Verificar deploy
+        run: ls -l dist/
