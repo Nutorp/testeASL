@@ -1,4 +1,4 @@
-name: CI/CD - Deploy Simulado
+name: CI/CD - Deply Simulado
 
 on:
   push:
